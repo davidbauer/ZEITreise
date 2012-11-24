@@ -19,12 +19,9 @@ $(function() {
 		$('.testing').append('<li>Vor ' + years + ' Jahr(en) war der ' + destination + '</li>');
 	};
 	
-	
-	$('#searchform').submit(function(e) {
-		e.preventDefault();
-		
+	// call API	
 		var api = $("body").zon_api({
-		query:"release_date:" + "2011-12-01",
+		query:"release_date:" + "2011-12-01", // was für ein datumsformat ist hier als input gefordert?
 		api_key:"db707bec3c2ceb694d5e38df7054899154b4bd7ffe2431d71bbc",
 		endpoint:"content",
 		params:{fields:"title,href"},
@@ -44,5 +41,5 @@ $(function() {
 		} 
 
 	});
-	});
+	
 });
