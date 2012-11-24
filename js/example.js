@@ -1,22 +1,23 @@
 $(function() {
 	var today=new Date();
-	var one=new Date()
-	one.setFullYear(one.getFullYear()-1);
-	var ten=new Date()
-	ten.setFullYear(ten.getFullYear()-10);
-	var twenty=new Date();
-	twenty.setFullYear(twenty.getFullYear()-20);
-	var thirty=new Date();
-	thirty.setFullYear(thirty.getFullYear()-30);
-	var fourty=new Date();
-	fourty.setFullYear(fourty.getFullYear()-40);
-	
 	$('.testing').append('<ul><li>Heute ist der ' + today + '</li>');
-	$('.testing').append('<li>Vor 1 Jahr war der ' + one + '</li>');
-	$('.testing').append('<li>Vor 10 Jahren war der ' + ten + '</li>');
-	$('.testing').append('<li>Vor 20 Jahren war der ' + twenty + '</li>');
-	$('.testing').append('<li>Vor 30 Jahren war der ' + thirty + '</li>');
-	$('.testing').append('<li>Vor 40 Jahren war der ' + fourty + '</li></ul>');
+	
+	$('.linkinput').click (function(e) {
+		e.preventDefault();
+		var destination = $(this).attr('data-word');
+		var years = $(this).attr('data-number');
+		getTimestamp(destination, years);
+		
+
+		
+	});
+	
+	
+	function getTimestamp(destination, years) {
+		var destination = new Date();
+		destination.setFullYear(destination.getFullYear()-years);
+		$('.testing').append('<li>Vor ' + years + ' Jahr(en) war der ' + destination + '</li>');
+	};
 	
 	
 	$('#searchform').submit(function(e) {
