@@ -10,3 +10,5 @@ Help very welcome. Please comment on your code more extensively than you normall
 To Do:
 * Datumsformat so anpassen, dass die API-Abfrage damit gemacht werden kann
 * Problem angehen, dass bei längeren Zeitreisen keine Artikel gefunden werden, weil Datum nicht auf einen Donnerstag fällt (Publikationstag der gedruckten ZEIT)
+
+Documentation of ZEIT API: http://developer.zeit.de/
