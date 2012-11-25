@@ -43,6 +43,8 @@ $(function() {
 			$('.result').append("<span style='background-color:yellow;'>Zeitreise erfolgreich</span>. Willkommen am " + startDate);
 			for (var i = 0; i < results.length; i++) {
 				var item = results[i];
+				if (item.subtitle == undefined)
+				{item.subtitle = ""}; 
 				$('.result').append('<li><a href="'+item.href+'"><h3>'+ item.title + '</h3><br />' + item.subtitle + '</a></li>');
 			}
 
