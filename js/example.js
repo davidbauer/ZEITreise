@@ -40,10 +40,10 @@ $(function() {
 			console.dir(data.get_result().matches);
 			var results = data.get_result().matches;
 			$('.result').html(""); // clear
-			$('.result').append("<span style='background-color:yellow;'>Zeitreise erfolgreich</span>");
+			$('.result').append("<span style='background-color:yellow;'>Zeitreise erfolgreich</span>. Willkommen am " + startDate);
 			for (var i = 0; i < results.length; i++) {
 				var item = results[i];
-				$('.result').append('<li><a href="'+item.href+'">'+ item.title + '</a><br />' + item.subtitle + '</li>');
+				$('.result').append('<li><a href="'+item.href+'"><h3>'+ item.title + '</h3><br />' + item.subtitle + '</a></li>');
 			}
 
 		});
