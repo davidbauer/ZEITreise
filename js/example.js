@@ -23,7 +23,7 @@ $(function() {
 		startDate = startDate.sod(); // start of day, http://momentjs.com/docs/#/manipulating/sod/
 		startDate = startDate.toDate().toJSON(); // get correct time format
 		var endDate = moment().subtract('years', yearsOffset); // today minus year, http://momentjs.com/docs/#/manipulating/subtract/
-		endDate = endDate.day(3); // to wendsday, http://momentjs.com/docs/#/manipulating/day/
+		endDate = endDate.day(3); // to wednesday, http://momentjs.com/docs/#/manipulating/day/
 		endDate = endDate.eod(); // end of day, http://momentjs.com/docs/#/manipulating/eod/
 		endDate = endDate.toDate().toJSON(); // get correct time format
 		console.log(startDate+" "+endDate); // again, don't get confused with local hours vs. UTC (Zulu) hours
@@ -32,7 +32,7 @@ $(function() {
 			query:"release_date:["+startDate+" TO "+endDate+"]",
 			api_key:"db707bec3c2ceb694d5e38df7054899154b4bd7ffe2431d71bbc",
 			endpoint:"content",
-			params:{fields:"title,href"},
+			params:{fields:"title,href,subtitle"},
 			limit: 1000
 		});
 
@@ -40,9 +40,10 @@ $(function() {
 			console.dir(data.get_result().matches);
 			var results = data.get_result().matches;
 			$('.result').html(""); // clear
+			$('.result').append("<span style='background-color:yellow;'>Zeitreise erfolgreich</span>");
 			for (var i = 0; i < results.length; i++) {
 				var item = results[i];
-				$('.result').append('<li><a href="'+item.href+'">'+ item.title + '</a></li>');
+				$('.result').append('<li><a href="'+item.href+'">'+ item.title + '</a><br />' + item.subtitle + '</li>');
 			}
 
 		});
