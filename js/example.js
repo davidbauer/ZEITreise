@@ -19,14 +19,23 @@ $(function() {
 			I implement startDate to endDate as the full week from thursday to wednesday.
 		*/
 		var startDate = moment().subtract('years', yearsOffset); // today minus year, http://momentjs.com/docs/#/manipulating/subtract/
-		startDate = startDate.day(4-7); // to thursday, http://momentjs.com/docs/#/manipulating/day/
-		startDate = startDate.sod(); // start of day, http://momentjs.com/docs/#/manipulating/sod/
-		startDate = startDate.toDate().toJSON(); // get correct time format
-		var endDate = moment().subtract('years', yearsOffset); // today minus year, http://momentjs.com/docs/#/manipulating/subtract/
-		endDate = endDate.day(3); // to wednesday, http://momentjs.com/docs/#/manipulating/day/
-		endDate = endDate.eod(); // end of day, http://momentjs.com/docs/#/manipulating/eod/
-		endDate = endDate.toDate().toJSON(); // get correct time format
-		console.log(startDate+" "+endDate); // again, don't get confused with local hours vs. UTC (Zulu) hours
+		if (yearsOffset > 3) {
+				startDate = startDate.day(4-7); // to thursday, http://momentjs.com/docs/#/manipulating/day/
+				startDate = startDate.sod(); // start of day, http://momentjs.com/docs/#/manipulating/sod/
+				startDate = startDate.toDate().toJSON(); // get correct time format
+				var endDate = moment().subtract('years', yearsOffset); // today minus year, http://momentjs.com/docs/#/manipulating/subtract/
+				endDate = endDate.day(3); // to wednesday, http://momentjs.com/docs/#/manipulating/day/
+				endDate = endDate.eod(); // end of day, http://momentjs.com/docs/#/manipulating/eod/
+				endDate = endDate.toDate().toJSON(); // get correct time format
+				console.log(startDate+" "+endDate); // again, don't get confused with local hours vs. UTC (Zulu) hours
+				}
+		else {
+			endDate = startDate;
+			startDate = startDate.sod(); // start of day, http://momentjs.com/docs/#/manipulating/sod/
+			startDate = startDate.toDate().toJSON(); // get correct time format
+			endDate = endDate.eod(); // end of day, http://momentjs.com/docs/#/manipulating/eod/
+			endDate = endDate.toDate().toJSON(); // get correct time format
+		}
 
 		var api = $("body").zon_api({
 			query:"release_date:["+startDate+" TO "+endDate+"]",
@@ -39,6 +48,9 @@ $(function() {
 		api.retrieve(0, function (data){
 			console.dir(data.get_result().matches);
 			var results = data.get_result().matches;
+			
+			
+			
 			$('.result').html(""); // clear
 			$('.result').append("<span style='background-color:yellow;'>Zeitreise erfolgreich</span>. Willkommen am " + startDate);
 			for (var i = 0; i < results.length; i++) {
